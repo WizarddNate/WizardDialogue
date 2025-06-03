@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1706.6667
     height: 976
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Inspector
   m_RootView: {fileID: 4}
   m_MinSize: {x: 875, y: 548}
   m_MaxSize: {x: 10000, y: 10000}
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 24
+  controlID: 16
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -97,7 +97,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1706.6666
+    width: 1706.6667
     height: 976
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -122,7 +122,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1706.6666
+    width: 1706.6667
     height: 36
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
@@ -147,12 +147,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 36
-    width: 1706.6666
+    width: 1706.6667
     height: 920
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 127
+  controlID: 119
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -171,7 +171,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 956
-    width: 1706.6666
+    width: 1706.6667
     height: 20
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
@@ -226,7 +226,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 80
+  controlID: 77
   draggingID: 0
 --- !u!114 &10
 MonoBehaviour:
@@ -245,7 +245,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 1213.3334
     y: 0
-    width: 493.33325
+    width: 493.33337
     height: 920
   m_MinSize: {x: 275, y: 50}
   m_MaxSize: {x: 4000, y: 4000}
@@ -401,7 +401,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 1213.3334
     y: 78.66667
-    width: 492.33325
+    width: 492.33337
     height: 894
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -486,15 +486,15 @@ MonoBehaviour:
   m_LastFolders:
   - Assets/Resources
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: C:\UnityGames(NoOneDrive)\DialogueManager_NodeBased\Dialogue
+  m_LastProjectPath: C:\UnityGames(NoOneDrive)\DialogueManager_NodeBased\WizardDialogue\Dialogue
     Manager Node Based
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 4eb00000
-    m_LastClickedID: 45134
-    m_ExpandedIDs: 000000006eae000070ae0000
+    m_SelectedIDs: a2040100
+    m_LastClickedID: 66722
+    m_ExpandedIDs: 000000007ce8000054ec0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -523,7 +523,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000006eae000070ae0000
+    m_ExpandedIDs: 
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1399,9 +1399,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 72eeffff
+      m_SelectedIDs: 3acb0000
       m_LastClickedID: 0
-      m_ExpandedIDs: 06fbffff
+      m_ExpandedIDs: 4e2bffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 

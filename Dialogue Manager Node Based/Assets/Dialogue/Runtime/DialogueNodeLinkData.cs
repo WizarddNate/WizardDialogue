@@ -5,7 +5,7 @@ using UnityEngine;
 public class DialogueNodeLinkData 
 {
     /// <summary>
-    /// Saves the data of the LINK BETWEEN nodes. 
+    /// Saves the data of the LINK BETWEEN nodes (aka the edges). 
     /// Save the ID of the Input and Output nodes as well as the name of the port
     /// </summary>
     

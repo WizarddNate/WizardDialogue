@@ -9,7 +9,7 @@ public class DialogueNodeData
     /// Save the unique ID, the dialogue text, and the nodes position in the graph
     /// </summary>
 
-    [HideInInspector] public string NodeGUID;
+    public string NodeGUID;
     public string DialogueText;
     public Vector2 Position;
 }

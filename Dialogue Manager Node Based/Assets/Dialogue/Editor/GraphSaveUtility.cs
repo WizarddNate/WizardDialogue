@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GraphSaveUtility 
 {
@@ -23,6 +24,7 @@ public class GraphSaveUtility
         };
     }
 
+    //allows you to get edge list without other scripts messing with the data
     public List<Edge> GetEdges()
     {
         return Edges;
@@ -84,11 +86,14 @@ public class GraphSaveUtility
             return;
         }
 
-        ClearGraph();
+        //BUGGED
+        //ClearGraph();
         CreateNodes();
         ConnectNodes();
     }
 
+
+    //remove everything from graph before loading data
     private void ClearGraph()
     {
         //Set entry point GUID back from the save. Discard exisiting GUID.
@@ -97,7 +102,7 @@ public class GraphSaveUtility
         //iterate through each node in the file
         foreach(var node in Nodes)
         {
-            if (node.EntryPoint) return;
+            if (node.EntryPoint) continue;
 
             //Remove edges that are connnected to this node
             Edges.Where(x => x.input.node == node).ToList().ForEach(edge => _targetGraphView.RemoveElement(edge));
@@ -107,6 +112,7 @@ public class GraphSaveUtility
         }
 
     }
+
 
     //Create nodes that exist in a save file
     private void CreateNodes()
@@ -126,6 +132,34 @@ public class GraphSaveUtility
 
     private void ConnectNodes()
     {
-        return;
+        for (int i = 0; i< Nodes.Count; i++)
+        {
+            var connections = _containerCache.NodeLinks.Where(x => x.BaseNodeGUId == Nodes[i].GUID).ToList();
+
+            for (int j = 0; j < connections.Count; i++)
+            {
+                var targetNodeGUID = connections[j].TargetNodeGUID;
+                var targetNode = Nodes.First(x => x.GUID == targetNodeGUID);
+                LinkNodes(Nodes[i].outputContainer[j].Q<Port>(), (Port) targetNode.inputContainer[0]);
+
+                targetNode.SetPosition(new Rect(
+                    _containerCache.DialogueNodeData.First(x => x.NodeGUID == targetNodeGUID).Position,
+                    _targetGraphView.DefaultNodeSize)); //NodeGUID might need to be GUI. 
+            }
+        }
+    }
+
+    private void LinkNodes(Port output, Port input)
+    {
+        var tempEdge = new Edge
+        {
+            output = output,
+            input = input
+        };
+
+        tempEdge?.input.Connect(tempEdge);
+        tempEdge?.output.Connect(tempEdge);
+        _targetGraphView.Add(tempEdge);
+
     }
 }

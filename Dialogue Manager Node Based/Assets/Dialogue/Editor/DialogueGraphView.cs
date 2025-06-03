@@ -1,7 +1,9 @@
 using UnityEngine;
+using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using Unity.VisualScripting;
 using UnityEngine.UIElements;
+using System.Linq;
 using System;
 using System.Collections.Generic;
 
@@ -11,7 +13,7 @@ public class DialogueGraphView : GraphView
     /// Creates and manages everything within the dialogue editor window
     /// </summary>
 
-    private readonly Vector2 defaultNodeSize = new Vector2(x: 150, y: 200);
+    public readonly Vector2 DefaultNodeSize = new Vector2(x: 150, y: 200);
 
     public DialogueGraphView()
     {
@@ -24,11 +26,11 @@ public class DialogueGraphView : GraphView
         this.AddManipulator(new SelectionDragger());
         this.AddManipulator(new RectangleSelector());
 
-        //Create grid background. I one day wanna figure out how to add a grid
+        //Create a black background. I one day wanna figure out how to add a grid
         var grid = new GridBackground();
         Insert(index: 0, grid);
         grid.StretchToParentSize();
-        grid.style.backgroundColor = Color.blue; //doesnt work for some reason
+        //grid.style.backgroundColor = Color.blue; //doesnt work for some reason
 
         AddElement(GenerateEntryPointNode());
     }
@@ -107,7 +109,7 @@ public class DialogueGraphView : GraphView
         dialogueNode.RefreshExpandedState();
         dialogueNode.RefreshPorts();
 
-        dialogueNode.SetPosition(new Rect(position: Vector2.zero, defaultNodeSize));
+        dialogueNode.SetPosition(new Rect(position: Vector2.zero, DefaultNodeSize));
 
         return dialogueNode;
     }
@@ -119,6 +121,8 @@ public class DialogueGraphView : GraphView
 
         //removes redudant labels from choice container
         //commented out because it currently creates bugs
+        //later just try and hide (instead of removing) the port by using "display:none"
+
         //var oldLabel = generatedPort.contentContainer.Q<Label>(name: "type");
         //generatedPort.contentContainer.Remove(oldLabel);
 
@@ -145,30 +149,35 @@ public class DialogueGraphView : GraphView
         textField.style.maxWidth = 100;
         textField.style.maxHeight = 200;
 
-        //create a delete button
+        //create a delete button on the choice ports
         var deleteButton = new Button(clickEvent: () => RemovePort(dialogueNode, generatedPort)) 
         { 
             text = "X"
         };
         generatedPort.contentContainer.Add(deleteButton);
 
-
         generatedPort.portName = choicePortName;
 
         dialogueNode.outputContainer.Add(generatedPort);
-        dialogueNode.RefreshExpandedState();
         dialogueNode.RefreshPorts();
+        dialogueNode.RefreshExpandedState();
     }
 
+    //allows you to remove choice ports
     private void RemovePort(DialogueNode dialogueNode, Port generatedPort)
     {
-        /* BUGGED
-        var targetEdge = edges.ToList().Where(x => x.output.portName == generatedPort.portName && x.ouput.node == generatedPort.node);
+        
+        var targetEdge = edges.ToList().Where(x => x.output.portName == generatedPort.portName && x.output.node == generatedPort.node);
 
-        if (!targetEdge.Any()) return;
-        var edge  = targetEdge.First();
-        edge.input.Disconnect(edge);
-        RemoveElement(targetEdge.First()); */
-
+        if (targetEdge.Any())
+        {
+            var edge = targetEdge.First();
+            edge.input.Disconnect(edge);
+            RemoveElement(targetEdge.First());
+        }
+        
+        dialogueNode.outputContainer.Remove(generatedPort);
+        dialogueNode.RefreshPorts();
+        dialogueNode.RefreshExpandedState();
     }
 }
